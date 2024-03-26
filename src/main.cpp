@@ -2,10 +2,10 @@
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 
-const char* ssid = "nazwa_twojej_sieci";
-const char* password = "haslo_twojej_sieci";
-const char* apSSID = "ESP32_AP";
-const char* apPassword = "haslo_AP";
+const char* ssid = "";
+const char* password = "";
+const char* apSSID = "";
+const char* apPassword = "";
 
 TaskHandle_t taskHandle = NULL;
 
@@ -15,15 +15,15 @@ void taskFunction(void *parameter) {
     while(1) {
         // Sprawdzanie połączenia z routerem WiFi
         if (WiFi.status() != WL_CONNECTED) {
-            Serial.println("Brak połączenia z routerem. Ponowna próba połączenia...");
+            Serial.println("Brak połączenia. Ponowna próba połączenia...");
             WiFi.begin(ssid, password);
         }
 
         // Sprawdzanie połączenia z punktem dostępowym
         if (WiFi.softAPgetStationNum() == 0) {
-            Serial.println("Brak klientów w punkcie dostępowym.");
+            Serial.println("Brak klientów.");
         } else {
-            Serial.print("Liczba klientów w punkcie dostępowym: ");
+            Serial.print("Liczba klientów: ");
             Serial.println(WiFi.softAPgetStationNum());
         }
 
@@ -37,7 +37,7 @@ void setup() {
 
     // Inicjalizacja WiFi w trybie Access Point
     while (!initializeSoftAP()) {
-        Serial.println("Błąd inicjalizacji Access Point. Ponowna próba...");
+        Serial.println("Błąd inicjalizacji. Ponowna próba...");
         delay(1000);
     }
 
