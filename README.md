@@ -1,4 +1,5 @@
-Access Point WiFi Project
+#Access Point
+WiFi Project
 Description
 This project aims to explore the functionality of wireless communication libraries on ESP32 microcontrollers. It involves connecting the ESP32 to an existing WiFi network and creating an Access Point (AP) WiFi network for other devices to connect to.
 
